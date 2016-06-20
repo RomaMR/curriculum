@@ -1,0 +1,108 @@
+<div class="m-t-xxl panel">
+  <form name="profileForm" class="form-validation">
+    <div class="text-center">
+      <h4>Персональна інформація</h4>
+    </div>
+    <div class="text-danger text-center" ng-show="profile.emailError">
+      <h4>{{profile.emailError}}</h4>
+    </div>
+    <div class="row m-t padder">
+      <div class="form-group">
+        <label class="col-sm-3 control-label m-t-xs">Прізвище</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="lastName"
+                 ng-model="profile.user.lastName" required ng-minlength="3">
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="col-sm-3 control-label m-t-xs">Ім'я</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="firstName"
+                 ng-model="profile.user.firstName" required ng-minlength="3">
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="col-sm-3 control-label m-t-xs">По батькові</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="patronymicName"
+                 ng-model="profile.user.patronymicName" required ng-minlength="3">
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="col-sm-3 control-label m-t-xs">Посада</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="position"
+                 ng-model="profile.user.position" required ng-minlength="5">
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="col-sm-3 control-label m-t-xs">Кафедра</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="department"
+                 ng-model="profile.user.department" required ng-minlength="5">
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="col-sm-3 control-label m-t-xs">Емейл</label>
+        <div class="col-sm-9">
+          <input type="email" class="form-control" name="email"
+                 ng-model="profile.user.email" required
+                 ui-validate=" 'profile.checkEmail($value) && !profile.emailError' " ng-model-options="{debounce: 1000}"
+                 ui-validate-watch=" 'profile.emailError' ">
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-primary btn-rounded pull-right m-t w-xs" ng-disabled="profileForm.$invalid"
+                ng-click="profile.updateProfile()">Зберегти
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <form name="passwordForm" class="form-validation" autocomplete="off">
+    <div class="text-center">
+      <h4>Зміна паролю</h4>
+    </div>
+    <div class="text-danger text-center" ng-show="profile.passwordError">
+      <h4>{{profile.passwordError}}</h4>
+    </div>
+    <div class="row m-t m-b padder">
+      <div class="form-group">
+        <label class="col-sm-3 control-label m-t-xs">Пароль</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" name="old-password" autocomplete="new-password"
+                 ng-model="profile.password.password" required ng-minlength="5">
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="col-sm-3 control-label m-t-xs">Новий пароль</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" name="new-password"
+                 ng-model="profile.password.newPassword" required ng-minlength="5">
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="col-sm-3 control-label m-t-xs">Підтвердження паролю</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" name="confirm-password"
+                 ng-model="profile.password.confirmPassword" required ng-minlength="5"
+                 ui-validate=" '$value==profile.password.newPassword' " ui-validate-watch=" 'profile.password.newPassword' ">
+        </div>
+      </div>
+      <br>
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-primary btn-rounded pull-right m-t m-b w-xs" ng-disabled="passwordForm.$invalid"
+                ng-click="profile.updatePassword()">Змінити
+        </button>
+      </div>
+      <br>
+    </div>
+  </form>
+</div>

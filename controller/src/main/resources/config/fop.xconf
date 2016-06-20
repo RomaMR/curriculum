@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<fop version="1.0">
+  <renderers>
+    <renderer mime="application/pdf">
+      <fonts>
+        <font kerning="yes" metrics-url="CONFIG_PATH/font/xml/arial.xml" embed-url="CONFIG_PATH/font/ttf/arial.ttf" embedding-mode="subset">
+          <font-triplet name="Arial" style="normal" weight="normal"/>
+        </font>
+        <font kerning="yes" metrics-url="CONFIG_PATH/font/xml/arialbd.xml" embed-url="CONFIG_PATH/font/ttf/arialbd.ttf" embedding-mode="subset">
+          <font-triplet name="Arial" style="normal" weight="bold"/>
+        </font>
+        <font kerning="yes" metrics-url="CONFIG_PATH/font/xml/arialbi.xml" embed-url="CONFIG_PATH/font/ttf/arialbi.ttf" embedding-mode="subset">
+          <font-triplet name="Arial" style="italic" weight="bold"/>
+        </font>
+        <font kerning="yes" metrics-url="CONFIG_PATH/font/xml/ariali.xml" embed-url="CONFIG_PATH/font/ttf/ariali.ttf" embedding-mode="subset">
+          <font-triplet name="Arial" style="italic" weight="normal"/>
+        </font>
+      </fonts>
+    </renderer>
+  </renderers>
+</fop>

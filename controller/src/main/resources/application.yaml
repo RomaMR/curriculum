@@ -1,0 +1,24 @@
+server:
+      compression:
+                  enabled: true
+multipart:
+         maxFileSize: 10Mb
+spring:
+      profiles.active: openshift
+---
+spring:
+      profiles: development
+spring.data.mongodb:
+                database: curriculum
+                host: localhost
+                port: 27017
+---
+spring:
+      profiles: openshift
+spring.data.mongodb:
+                database: ${OPENSHIFT_APP_NAME}
+                username: ${OPENSHIFT_MONGODB_DB_USERNAME}
+                password: ${OPENSHIFT_MONGODB_DB_PASSWORD}
+                host: ${OPENSHIFT_MONGODB_DB_HOST}
+                port: ${OPENSHIFT_MONGODB_DB_PORT}
+fop.config.path: ${OPENSHIFT_DATA_DIR}/config

@@ -1,0 +1,55 @@
+<div class="m-t-xl panel">
+  <tabset justified="true" class="tab-container  wrapper-md">
+    <tab heading="Користувачі">
+      <input type="text" class="col-sm-6 form-control input-lg m-t m-b" placeholder="Пошук..." ng-model="admin.searchQuery"
+             ng-change='admin.loadUsers(true)' ng-model-options="{debounce: 500}">
+      <table class="table table-bordered table-hover table-condensed bg-white-only m-t-lg">
+        <thead class="text-center">
+        <tr>
+          <th class="text-center">Імя</th>
+          <th class="text-center">Прізвище</th>
+          <th class="text-center">По батькові</th>
+          <th class="text-center">Емейл</th>
+          <th class="text-center w-lg">Роль</th>
+          <th class="w-xs"></th>
+        </tr>
+        </thead>
+        <tbody infinite-scroll='admin.loadUsers()' infinite-scroll-disabled="admin.infiniteScrollFinished">
+        <tr ng-repeat="user in admin.users">
+          <td class="text-center"><label class="text-center font-normal m-t-xs" ng-class="{ 'highlight-search': admin.highlightSearch(user.firstName) }">{{user.firstName}}</label>
+          </td>
+          <td class="text-center"><label class="text-center font-normal m-t-xs" ng-class="{ 'highlight-search': admin.highlightSearch(user.lastName) }">{{user.lastName}}</label>
+          </td>
+          <td class="text-center"><label class="text-center font-normal m-t-xs" ng-class="{ 'highlight-search': admin.highlightSearch(user.patronymicName) }">{{user.patronymicName}}</label>
+          </td>
+          <td class="text-center"><label class="text-center font-normal m-t-xs" ng-class="{ 'highlight-search': admin.highlightSearch(user.email) }">{{user.email}}</label>
+          </td>
+          <td class="text-center">
+            <div class="btn-group" ng-show="user.id !== admin.currentUser.id">
+              <label class="btn btn-default" ng-model="user.role" btn-radio="'ROLE_READ'">Read</label>
+              <label class="btn btn-default" ng-model="user.role" btn-radio="'ROLE_WRITE'">Write</label>
+              <label class="btn btn-default" ng-model="user.role" btn-radio="'ROLE_ADMIN'">Admin</label>
+            </div>
+            <div class="btn-group" ng-show="user.id === admin.currentUser.id">
+              <p class="m-t-xs font-bold">Admin</p>
+            </div>
+          </td>
+          <td>
+            <button type="button" ng-click="admin.saveUser(user)" class="form-control btn btn-sm btn-danger m-t-xxs" ng-if="user.oldRole !== user.role">
+              Зберегти
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </tab>
+    <tab heading="Контент">
+      <tabset justified="true" class="tab-container m-t-lg">
+        <tab ng-repeat="constantType in admin.constantTypes" heading={{constantType.title}}>
+          <constants-form category-name={{constantType.title}} category-array=admin.temporaryConstants[constantType.type]
+                          original-array=admin.constants[constantType.type] save-constants="admin.saveConstants"></constants-form>
+        </tab>
+      </tabset>
+    </tab>
+  </tabset>
+</div>

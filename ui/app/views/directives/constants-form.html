@@ -1,0 +1,27 @@
+<form name="contentForm" class="form-validation">
+  <div class="m-t-lg m-b-lg">
+    <h4 class="text-center">{{categoryName}}</h4>
+    <button type="button" class="btn btn-primary btn-rounded pull-right m-t-n-lg" ng-disabled="contentForm.$invalid"
+            ng-click="addCategory()">Додати
+    </button>
+  </div>
+  <div class="row m-t-xs" ng-repeat="category in categoryArray track by $index">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="categoryArray[$index]" required>
+    </div>
+    <div class="col-sm-3">
+      <button type="button" class="btn btn-danger btn-rounded pull-left"
+              ng-click="deleteCategory($index)"><i class="fa fa-times"></i>
+      </button>
+    </div>
+  </div>
+  <div class="text-center m-t-xl" ng-show="originalArray.length || categoryArray.length">
+    <button type="button" class="btn btn-success btn-rounded m-r-lg" ng-disabled="contentForm.$invalid"
+            ng-click="saveCategory()">Зберегти
+    </button>
+    <button type="button" class="btn btn-danger btn-rounded m-l-lg"
+            ng-click="cancelCategory()">Відмінити
+    </button>
+  </div>
+</form>

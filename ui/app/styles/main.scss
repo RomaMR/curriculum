@@ -1,0 +1,73 @@
+@import "colors";
+@import "form";
+@import "themes";
+@import "bootstrap-sass/assets/stylesheets/bootstrap";
+@import "angularjs-toaster/toaster";
+
+$fa-font-path: "../fonts";
+@import "components-font-awesome/scss/font-awesome";
+
+$body-width: 1200px;
+$content-min-height: 670px;
+
+body {
+  background: {
+    image: url("../images/background.jpg");
+    repeat: no-repeat;
+    attachment: fixed;
+    size: cover;
+    position: center;
+  }
+  width: $body-width;
+  margin: auto;
+}
+
+.transparent-box {
+  color: #fff;
+  background: rgba(#000, 0.4);
+}
+
+.header {
+  @extend .transparent-box;
+  width: $body-width;
+  position: absolute;
+  display: none;
+  top: 0;
+  font-size: 20px;
+  a {
+    color: white;
+    padding: 0 10px 0 10px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+.access {
+  margin: 10% auto;
+  width: 500px;
+  background-color: rgba(#fff, 0.8);
+  border-radius: 10px;
+}
+
+.preview-box {
+  @extend .transparent-box;
+  min-height: 320px;
+}
+
+.preview-box-actions {
+  position: relative;
+  margin: -140px auto;
+  background: rgba(#000, 0.8);
+  font-size: 25px;
+  text-align: center;
+  width: 200px;
+  border-radius: 10px;
+  a {
+    color: #fff;
+  }
+}
+
+.highlight-search {
+  color: #337ab7;
+  //box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}

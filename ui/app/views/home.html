@@ -1,0 +1,48 @@
+<div class="m-t-xxl">
+
+  <div class="text-right m-b-n m-t-n row">
+    <div class="col-sm-8">
+      <input type="text" class="form-control col-sm-12 transparent-box" placeholder="Пошук..." ng-model="home.searchQuery"
+             ng-change='home.loadCurriculums(true)' ng-model-options="{debounce: 500}">
+    </div>
+    <div class="col-sm-4">
+      <button type="button" class="btn btn-success btn-rounded" ng-hide="!home.isEditor()"
+              ui-sref="curriculum({id: '' })">Створити
+      </button>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row" infinite-scroll='home.loadCurriculums()' infinite-scroll-disabled="home.infiniteScrollFinished">
+    <div ng-repeat="curriculum in home.curriculums" class="col-sm-4">
+      <div class="panel preview-box" ng-mouseover="curriculum.showActions = true" ng-mouseout="curriculum.showActions = false">
+        <h4 class="text-center"><b>{{curriculum.name}}</b></h4>
+        <div class="row wrapper-xs">
+          <div class="col-sm-5"><b>Галузь знань:</b></div>
+          <div class="col-sm-7">{{curriculum.knowledgeBranch}}</div>
+        </div>
+        <div class="row wrapper-xs">
+          <div class="col-sm-5"><b>Напряму підготовки:</b></div>
+          <div class="col-sm-7">{{curriculum.trainingDirection}}</div>
+        </div>
+        <div class="row wrapper-xs">
+          <div class="col-sm-5"><b>Для спеціальності:</b></div>
+          <div class="col-sm-7">{{curriculum.specialty}}</div>
+        </div>
+        <div class="row wrapper-xs">
+          <div class="col-sm-5"><b>Факультету:</b></div>
+          <div class="col-sm-7">{{curriculum.faculty}}</div>
+        </div>
+        <div class="row wrapper-xs">
+          <div class="col-sm-5"><b>Кваліфікаційний рівень:</b></div>
+          <div class="col-sm-7">{{curriculum.qualificationLevel}}</div>
+        </div>
+        <div class="preview-box-actions" ng-hide="!curriculum.showActions">
+          <a ui-sref="curriculum({id: '{{curriculum.id}}' })" class="padder" ng-show="home.isAuthor(curriculum) && home.isEditor()"><i class="fa fa-pencil-square-o"></i></a>
+          <a href="{{home.curriculumHost}}/api/curriculums/{{curriculum.id}}/pdf" class="padder"><i class="fa fa-download"></i></a>
+          <a href="{{home.curriculumHost}}/api/curriculums/{{curriculum.id}}/pdf" class="padder"><i class="fa fa-file-pdf-o"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="access container w-xxl w-auto-xs">
+  <div class="m-b-lg">
+    <div class="wrapper text-center">
+      <h3>Sign up</h3>
+    </div>
+    <form name="form" class="form-validation">
+      <div class="text-danger text-center" ng-show="signup.authError">
+        <h4>{{signup.authError}}</h4>
+      </div>
+      <div class="list-group list-group-sm">
+        <div class="list-group-item">
+          <input placeholder="Прізвище" class="form-control no-border" ng-model="signup.user.lastName" required ng-minlength="3">
+        </div>
+        <div class="list-group-item">
+          <input placeholder="Ім'я" class="form-control no-border" ng-model="signup.user.firstName" required ng-minlength="3">
+        </div>
+        <div class="list-group-item">
+          <input placeholder="По батькові" class="form-control no-border" ng-model="signup.user.patronymicName" required ng-minlength="3">
+        </div>
+        <div class="list-group-item">
+          <input placeholder="Посада" class="form-control no-border" ng-model="signup.user.position" required ng-minlength="5">
+        </div>
+        <div class="list-group-item">
+          <input placeholder="Кафедра" class="form-control no-border" ng-model="signup.user.department" required ng-minlength="5">
+        </div>
+        <div class="list-group-item">
+          <input type="email" placeholder="Емейл" class="form-control no-border" ng-model="signup.user.email" required
+                 ui-validate=" 'signup.checkEmail($value) && !signup.authError' " ng-model-options="{debounce: 1000}"
+                 ui-validate-watch=" 'signup.authError' ">
+        </div>
+        <div class="list-group-item">
+          <input type="password" placeholder="Пароль" class="form-control no-border" ng-model="signup.user.password" required ng-minlength="5">
+        </div>
+        <div class="list-group-item">
+          <input type="password" placeholder="Підтвердження паролю" class="form-control no-border" ng-model="signup.user.verifyPassword" required
+                 ui-validate=" '$value==signup.user.password' " ui-validate-watch=" 'signup.user.password' ">
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="signup.signup()" ng-disabled='form.$invalid'>Sign up</button>
+      <div class="line line-dashed"></div>
+      <p class="text-center"><span>Already have an account?</span></p>
+      <a ui-sref="signin" class="btn btn-lg btn-default btn-block">Sign in</a>
+    </form>
+  </div>
+</div>

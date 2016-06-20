@@ -1,0 +1,347 @@
+<div class="m-t-xl wrapper-md panel">
+  <tabset justified="true" class="tab-container" ng-init="steps={percent:0, step1:false, step2:false, step3:false, step4:false, step5:false}">
+    <tab heading="ПРОГРАМА НАВЧАЛЬНОЇ ДИСЦИПЛІНИ" active="steps.step1" select="steps.percent=0">
+      <br>
+      <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+      <form name="step1" class="form-validation">
+        <div class="row m-l">
+          <div class="form-group">
+            <label class="col-sm-3 control-label m-t-sm">Назва</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="Фінансова математика" name="name"
+                     ng-model="curriculum.curriculum.name" required>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="col-sm-3 control-label m-t-sm">Галузь знань</label>
+            <div class="col-sm-9">
+              <ui-select ng-model="curriculum.curriculum.knowledgeBranch" theme="bootstrap">
+                <ui-select-match>{{$select.selected}}</ui-select-match>
+                <ui-select-choices repeat="item in curriculum.constants.knowledgeBranch | filter: $select.search">
+                  <div ng-bind-html="item | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="col-sm-3 control-label m-t-sm">Напрям підготовки</label>
+            <div class="col-sm-9">
+              <ui-select ng-model="curriculum.curriculum.trainingDirection" theme="bootstrap">
+                <ui-select-match>{{$select.selected}}</ui-select-match>
+                <ui-select-choices repeat="item in curriculum.constants.trainingDirection | filter: $select.search">
+                  <div ng-bind-html="item | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="col-sm-3 control-label m-t-sm">Для спеціальності</label>
+            <div class="col-sm-9">
+              <ui-select ng-model="curriculum.curriculum.specialty" theme="bootstrap">
+                <ui-select-match>{{$select.selected}}</ui-select-match>
+                <ui-select-choices repeat="item in curriculum.constants.specialty | filter: $select.search">
+                  <div ng-bind-html="item | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="col-sm-3 control-label m-t-sm">Факультету</label>
+            <div class="col-sm-9">
+              <ui-select ng-model="curriculum.curriculum.faculty" theme="bootstrap">
+                <ui-select-match>{{$select.selected}}</ui-select-match>
+                <ui-select-choices repeat="item in curriculum.constants.faculty | filter: $select.search">
+                  <div ng-bind-html="item | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="col-sm-3 control-label m-t-sm">Форма навчання</label>
+            <div class="col-sm-9">
+              <ui-select ng-model="curriculum.curriculum.studyForm" theme="bootstrap">
+                <ui-select-match>{{$select.selected}}</ui-select-match>
+                <ui-select-choices repeat="item in curriculum.constants.studyForm | filter: $select.search">
+                  <div ng-bind-html="item | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="col-sm-3 control-label m-t-sm">Семестр</label>
+            <div class="col-sm-9">
+              <input type="number" class="form-control" placeholder="1" name="term"
+                     ng-model="curriculum.curriculum.term" ui-validate=" '$value >= 0' " required>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="col-sm-3 control-label m-t-sm">Тип</label>
+            <div class="col-sm-9">
+              <ui-select ng-model="curriculum.curriculum.type" theme="bootstrap">
+                <ui-select-match>{{$select.selected}}</ui-select-match>
+                <ui-select-choices repeat="item in curriculum.constants.type | filter: $select.search">
+                  <div ng-bind-html="item | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label class="col-sm-3 control-label m-t-sm">Кваліфікаційний рівень</label>
+            <div class="col-sm-9">
+              <ui-select ng-model="curriculum.curriculum.qualificationLevel" theme="bootstrap">
+                <ui-select-match>{{$select.selected}}</ui-select-match>
+                <ui-select-choices repeat="item in curriculum.constants.qualificationLevel | filter: $select.search">
+                  <div ng-bind-html="item | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+        </div>
+        <div class="text-right m-t-md">
+          <button type="submit" class="btn btn-default btn-rounded"
+                  ng-class="{ 'btn-success': step1.$valid }"
+                  ng-click="step1.$valid ? (steps.step2=true) : (steps.step2=false)">Next
+          </button>
+        </div>
+      </form>
+    </tab>
+    <tab heading="РІВЕНЬ СФОРМОВАНОСТІ ВМІНЬ І ЗНАНЬ" disabled="step1.$invalid" active="steps.step2"
+         select="steps.percent=20">
+      <form name="step2" class="form-validation">
+        <br>
+        <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+        <table class="table table-bordered table-hover table-condensed bg-white-only  text-black">
+          <thead>
+          <tr>
+            <th rowspan="2" class="text-center w-xxs">Шифр змістового модуля</th>
+            <th colspan="2" class="text-center">Зміст умінь і знань, що забезпечується</th>
+            <th rowspan="2" class="w-xxs"></th>
+          </tr>
+          <tr>
+            <th class="text-center w-md">Назва</th>
+            <th class="text-center">Опис</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="module in curriculum.curriculum.modules">
+            <td><label class="form-control m-t-lg text-center">ЗМ{{module.code}}</label>
+            </td>
+            <td><input type="text" class="form-control m-t-lg" placeholder="Прості, складні та неперервні відсотки"
+                       name="name" ng-model="module.name" required></td>
+            <td><textarea class="form-control" rows="4"
+                          placeholder="Предмет фінансової математики. Вартість грошей і час. Вплив часу на фінансові розрахунки. Проценти, види процентних ставок. Нарощення та дисконтування за простими відсотковими ставками. Нарощення процентів у простому користувацькому кредиті. Конверсія валюти та нарощення процентів. Визначення інших параметрів фінансових угод із простими ставками. Нарахування складних річних відсотків. Нарощення відсотків m разів у році. Номінальна та ефективна ставки. Дисконтування за складними ставками. Визначення інших параметрів угод із складними ставками. Еквівалентність відсоткових ставок. Зміна умов контрактів. Неперервне нарощення та дисконтування. Неперервні відсотки."
+                          name="description" ng-model="module.description" required>
+              </textarea>
+            </td>
+            <td>
+              <button type="button" ng-click="curriculum.removeModule($index)" class="btn btn-sm btn-danger m-t-lg">
+                Delete
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-center m-t-md">
+          <button type="button" class="btn btn-primary btn-rounded"
+                  ng-click="curriculum.addModule()">Додати модуль
+          </button>
+        </div>
+        <div class="text-right m-t-md">
+          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
+          <button type="submit" ng-disabled="step2.$invalid" class="btn btn-default btn-rounded"
+                  ng-class="{ 'btn-success': step2.$valid }"
+                  ng-click="step2.$valid ? (steps.step3=true) : (steps.step3=false)">Next
+          </button>
+        </div>
+      </form>
+    </tab>
+    <tab heading="ІНФОРМАЦІЙНИЙ ОБСЯГ ДИСЦИПЛІНИ" disabled="step2.$invalid" active="steps.step3"
+         select="steps.percent=40">
+      <form name="step3" class="form-validation">
+        <br>
+        <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+        <div>
+          <p><b>Лекційний курс</b></p>
+          <table class="table table-bordered table-hover table-condensed bg-white-only text-black">
+            <thead>
+            <tr>
+              <th class="text-center w-xs">Шифр змістового модуля</th>
+              <th class="text-center">Назва змістового модуля</th>
+              <th class="text-center w-xs">Кількість ауд. годин</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="module in curriculum.curriculum.modules">
+              <td class="text-center">ЗМ{{module.code}}
+              </td>
+              <td>{{module.name}}</td>
+              <td><input type="number" class="form-control" placeholder="1" name="code" ng-model="module.lectures"
+                         ui-validate=" '$value >= 0' " required></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <p><b>Лабораторні заняття</b></p>
+          <table class="table table-bordered table-hover table-condensed bg-white-only text-black">
+            <thead>
+            <tr>
+              <th class="text-center w-xs">Шифр змістового модуля</th>
+              <th class="text-center">Назва змістового модуля</th>
+              <th class="text-center w-xs">Кількість ауд. годин</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="module in curriculum.curriculum.modules">
+              <td class="text-center">ЗМ{{module.code}}
+              </td>
+              <td>{{module.name}}</td>
+              <td><input type="number" class="form-control" placeholder="1" name="code" ng-model="module.laboratories"
+                         ui-validate=" '$value >= 0' " required></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <p class="text-center"><b>Самостійна робота студента (денна форма навчання)</b></p>
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="text-center"><b>Підготовка до лабораторних занять</b></p>
+              <div class="row">
+                <div class="form-group">
+                  <label class="col-sm-5 control-label">Кількість тижнів</label>
+                  <div class="col-sm-7">
+                    <input type="number" class="form-control" placeholder="0" name="laboratory-count"
+                           ng-model="curriculum.curriculum.individualWork.laboratory.count" ui-validate=" '$value >= 0' "
+                           required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-5 control-label">Тривалість (год)</label>
+                  <div class="col-sm-7">
+                    <input type="number" class="form-control" placeholder="0" name="laboratory-durability"
+                           ng-model="curriculum.curriculum.individualWork.laboratory.durability" ui-validate=" '$value >= 0' "
+                           step="0.5" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <p class="text-center"><b>Підготовка до колоквіуму (модуля)</b></p>
+              <div class="row">
+                <div class="form-group">
+                  <label class="col-sm-5 control-label">Кількість модулів</label>
+                  <div class="col-sm-7">
+                    <input type="number" class="form-control" placeholder="0" name="colloquium-count"
+                           ng-model="curriculum.curriculum.individualWork.colloquium.count" ui-validate=" '$value >= 0' "
+                           required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-5 control-label">Тривалість (год)</label>
+                  <div class="col-sm-7">
+                    <input type="number" class="form-control" placeholder="0" name="colloquium-durability"
+                           ng-model="curriculum.curriculum.individualWork.colloquium.durability" ui-validate=" '$value >= 0' "
+                           step="0.5" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-right m-t-md">
+          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
+          <button type="submit" ng-disabled="step3.$invalid" class="btn btn-default btn-rounded"
+                  ng-class="{ 'btn-success': step3.$valid }"
+                  ng-click="step3.$valid ? (steps.step4=true) : (steps.step4=false)">Next
+          </button>
+        </div>
+      </form>
+    </tab>
+    <tab heading="ПЕРЕЛІК РЕКОМЕНДОВАНИХ ПІДРУЧНИКІВ" disabled="step3.$invalid" active="steps.step4"
+         select="steps.percent=60">
+      <form name="step4" class="form-validation">
+        <br>
+        <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+        <table class="table table-bordered table-hover table-condensed bg-white-only text-black">
+          <thead>
+          <tr>
+            <th class="text-center w-xxs">Номер</th>
+            <th class="text-center">ПІДРУЧНИК / НАВЧАЛЬНИЙ ПОСІБНИК</th>
+            <th class="w-xxs"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="textbook in curriculum.curriculum.textbooks">
+            <td>
+              <label class="text-center m-t-sm form-control">{{textbook.code}}</label>
+            </td>
+            <td><textarea class="form-control" rows="2"
+                          placeholder="Васильченко І. П., Васильченко З. М. Фінансова математика: навчальний посібник / І. П. Васильченко, З. М. Васильченко. – К.: Кондор, 2007. – 184 с."
+                          name="textbook" ng-model="textbook.value" required>
+              </textarea>
+            </td>
+            <td>
+              <button type="button" ng-click="curriculum.removeTextbook($index)" class="btn btn-sm btn-danger m-t-sm">
+                Delete
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-center m-t-md">
+          <button type="button" class="btn btn-primary btn-rounded"
+                  ng-click="curriculum.addTextbook()">Додати підручник
+          </button>
+        </div>
+        <div class="text-right m-t-md">
+          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
+          <button type="submit" ng-disabled="step4.$invalid" class="btn btn-default btn-rounded"
+                  ng-class="{ 'btn-success': step4.$valid }"
+                  ng-click="step4.$valid ? (steps.step5=true) : (steps.step5=false)">Next
+          </button>
+        </div>
+      </form>
+    </tab>
+    <tab heading="ЗАСОБИ ДІАГНОСТИКИ ПОТОЧНОЇ УСПІШНОСТІ" disabled="step4.$invalid" active="steps.step5"
+         select="steps.percent=80">
+      <form name="step5" class="form-validation">
+        <br>
+        <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-9 control-label m-t-xs">Виконання домашніх завдань, відповіді та самостійна робота на
+              лабораторних заняттях (ма-ксимум)</label>
+            <div class="col-sm-3">
+              <input type="number" class="form-control" placeholder="10" name="homework"
+                     ng-model="curriculum.curriculum.individualWork.laboratory.progress" ui-validate=" '$value >= 0' " required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-9 control-label m-t-xs">Результати колоквіумів (максимум)</label>
+            <div class="col-sm-3">
+              <input type="number" class="form-control" placeholder="40" name="colloquium"
+                     ng-model="curriculum.curriculum.individualWork.colloquium.progress" ui-validate=" '$value >= 0' " required>
+            </div>
+          </div>
+        </div>
+        <div class="text-right m-t-md">
+          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
+          <button type="submit" ng-disabled="step5.$invalid" class="btn btn-default btn-rounded"
+                  ng-class="{ 'btn-success': step5.$valid }"
+                  ng-click="steps.percent=100; curriculum.save();">Finish
+          </button>
+        </div>
+      </form>
+    </tab>
+  </tabset>
+</div>
+

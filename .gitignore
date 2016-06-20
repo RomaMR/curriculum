@@ -1,0 +1,25 @@
+# Ignore Intellij project files and idea directory
+**/*.iml
+**/*.ipr
+**/*.iws
+.idea/
+
+# Generated Gradle files
+gradlew
+gradlew.bat
+gradle/
+.gradle/
+
+# Generated Java files
+/*/build
+domain/src/generated/
+
+# webapp
+controller/src/main/resources/static
+
+# ui
+/ui/node_modules
+/ui/.tmp
+/ui/.sass-cache
+/ui/dist
+/ui/bower_components
